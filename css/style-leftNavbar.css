@@ -1171,7 +1171,8 @@ Left header style
     font-size: 4.5rem;
     line-height: 1.1;
     letter-spacing: -1px;
-    /*text-transform: capitalize;*/ } }
+    /*text-transform: capitalize;*/
+    } }
 
 /*
 Link hover styles
@@ -1276,9 +1277,10 @@ Pricing tables
         font-size: .9rem;
         font-weight: 400; }
     .pricing-card .pricing-header .price-title {
-      font-size: 1.5rem;
+      font-size: 1.2rem;
       /*text-transform: capitalize;*/
-      font-family: "Open Sans", sans-serif; }
+      font-family: "Open Sans", sans-serif;
+      }
   .pricing-card.active {
     border-top: 5px solid #4683df;
     background-color: #4683df;
@@ -1527,4 +1529,11 @@ Footer style
   .login-container {
     text-align: center;
   }
+}
+
+#home .lead {
+  background: rgba(0,0,0,0.7);
+  color: #fff;
+  padding: 8px 16px;
+  border-radius: 6px;
 }
