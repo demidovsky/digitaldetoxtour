@@ -317,25 +317,26 @@ function join() {
 
     if (!$('#join_button').length) return;
 
-    var route1 = localStorage.getItem('route1');
-    var route2 = localStorage.getItem('route2');
-    var route3 = localStorage.getItem('route3');
-    if (route1) $('.route-1').addClass('active').html('<i class="fa fa-check mr0"></i>');
-    if (route2) $('.route-2').addClass('active').html('<i class="fa fa-check mr0"></i>');
-    if (route3) $('.route-3').addClass('active').html('<i class="fa fa-check mr0"></i>');
+    var route201 = localStorage.getItem('route201');
+    var route202 = localStorage.getItem('route202');
+    var route203 = localStorage.getItem('route203');
+    console.log(route201, route202, route203);
+    if (route201) $('.route-201').addClass('active').html('<i class="fa fa-check mr0"></i>');
+    if (route202) $('.route-202').addClass('active').html('<i class="fa fa-check mr0"></i>');
+    if (route203) $('.route-203').addClass('active').html('<i class="fa fa-check mr0"></i>');
     
 
-    $('#join_name').keypress(function(e) {
-        if(e.which == 13) {
-            join();
-        }
-    });
+    // $('#join_name').keypress(function(e) {
+    //     if(e.which == 13) {
+    //         join();
+    //     }
+    // });
 
-    var name = localStorage.getItem('name');
-    if (name) {
-        $('#join_button').addClass('active').html('<i class="fa fa-check mr0"></i>');
-        $('#join_name').attr("disabled", "disabled").val(name);
-    }
+    // var name = localStorage.getItem('name');
+    // if (name) {
+    //     $('#join_button').addClass('active').html('<i class="fa fa-check mr0"></i>');
+    //     $('#join_name').attr("disabled", "disabled").val(name);
+    // }
 
 
 })(jQuery, window, document);

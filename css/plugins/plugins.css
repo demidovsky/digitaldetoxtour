@@ -9803,6 +9803,7 @@ pre code {
   padding: .75rem;
   vertical-align: top;
   border-top: 1px solid #dee2e6;
+  /* font-size: 1rem; */
 }
 
 .table thead th {
@@ -12154,12 +12155,13 @@ tbody.collapse.show {
 
 .nav-pills .nav-link {
   border-radius: .25rem;
+  color: #5bc0de;
 }
 
 .nav-pills .nav-link.active,
 .nav-pills .show>.nav-link {
   color: #fff;
-  background-color: #007bff;
+  background-color: #5bc0de;
 }
 
 .nav-fill .nav-item {

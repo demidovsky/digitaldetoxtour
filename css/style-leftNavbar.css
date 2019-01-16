@@ -681,7 +681,8 @@ Buttons
 .btn-outline-primary {
   border: 2px solid #4683df;
   background-color: transparent;
-  color: #4683df !important; }
+   color: #4683df /*!important; */
+  }
   .btn-outline-primary:hover, .btn-outline-primary:focus, .btn-outline-primary:active {
     color: #fff !important;
     border-color: #4683df;
@@ -689,18 +690,6 @@ Buttons
     .btn-outline-primary:hover:before, .btn-outline-primary:focus:before, .btn-outline-primary:active:before {
       width: 100%;
       background-color: #4683df; }
-
-.btn-outline-info {
-  border: 2px solid #5bc0de;
-  background-color: transparent;
-  color: #5bc0de; }
-  .btn-outline-info:hover, .btn-outline-info:focus, .btn-outline-info:active {
-    color: #fff;
-    border-color: #5bc0de;
-    background-color: transparent; }
-    .btn-outline-info:hover:before, .btn-outline-info:focus:before, .btn-outline-info:active:before {
-      width: 100%;
-      background-color: #5bc0de; }
 
 .btn-outline-info {
   border: 2px solid #5bc0de;
@@ -1075,8 +1064,9 @@ Left header style
   padding: 10px 10px;
   text-align: center; }
   .nav-link.active {
-    border-right-color: #4683df;
-    color: #4683df; }
+    border-right-color: 0;
+    color: #4683df;
+    }
 
 .navbar.navbar-light.bg-white .navbar-nav .nav-link {
   color: #333; }
@@ -1277,7 +1267,7 @@ Pricing tables
         font-size: .9rem;
         font-weight: 400; }
     .pricing-card .pricing-header .price-title {
-      font-size: 1.2rem;
+      font-size: 1rem;
       /*text-transform: capitalize;*/
       font-family: "Open Sans", sans-serif;
       }
@@ -1296,25 +1286,29 @@ Pricing tables
 .pricing-features {
   padding: 30px 20px;
   background-color: #fbfbfb; }
-  .pricing-features ul {
+  .pricing-features > ul.list-unstyled                                           {
     margin-bottom: 0px; }
-    .pricing-features ul li {
+    .pricing-features > ul.list-unstyled li {
       position: relative;
       padding-left: 30px;
       margin-bottom: 10px;
       font-size: 1rem;
       /*text-transform: capitalize;*/ }
-      .pricing-features ul li:before {
+      .pricing-features > ul.list-unstyled li:before {
         position: absolute;
         left: 0;
         top: 0;
         font-family: "FontAwesome";
         content: "\f00c"; }
-      .pricing-features ul li:last-child {
+      .pricing-features > ul.list-unstyled li:last-child {
         margin-bottom: 0px; }
 
 .pricing-footer {
   padding: 20px; }
+
+.pricing-features .nav {
+  justify-content: space-around;
+}
 
 /*
 Team style
