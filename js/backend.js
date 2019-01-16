@@ -28,21 +28,14 @@ $(function() {
      js.src = "https://connect.facebook.net/en_US/sdk.js";
      fjs.parentNode.insertBefore(js, fjs);
    }(document, 'script', 'facebook-jssdk'));
+
+
 });
 
 
 
 
-$(function() {
-  var dates = JSON.parse(localStorage.getItem('dates2'));
-  console.log(dates);
-  for (var i in dates) {
-    $('.day' + i).addClass('active').html('<i class="fa fa-check mr0"></i>')
-  }
 
-
-  $('#confirm').click(sendDates);
-})
 
 
 
@@ -338,6 +331,7 @@ function join() {
     //     $('#join_name').attr("disabled", "disabled").val(name);
     // }
 
+  $('#confirm').click(sendDates);
 
 })(jQuery, window, document);
 
@@ -356,7 +350,7 @@ function showResults () {
 
   $.ajax({
     type: 'GET',
-    url: BASE_URL + '/data/Votes',
+    url: BASE_URL + '/data/dates_table',
     // data: { userId: userId, vote: dates },
     dataType:'json',
     contentType: 'application/json; charset=utf-8',
@@ -367,6 +361,7 @@ function showResults () {
         var person = '<img title="' + votes[i].userName + '" alt="' + votes[i].userName + '" style="border-radius: 50%" src="http://graph.facebook.com/' + votes[i].userId + '/picture?type=large&width=32&height=32">'
         var dates = JSON.parse(votes[i].dates);
         for (var day in dates) {
+          console.log(day);
           $('.day' + day).append(person);
         }
 
@@ -386,6 +381,18 @@ function showResults () {
 }
 
 
+function showSelection() {
+  var dates = JSON.parse(localStorage.getItem('dates2'));
+  console.log(dates);
+  for (var i in dates) {
+    $('.day' + i).addClass('active').html('<i class="fa fa-check mr0"></i>')
+  }
+}
+
+  
+
+
 $(function() {
   if ($('#team_calendar').length) showResults();
+  else showSelection();
 });

@@ -140,6 +140,31 @@
                             <div class="row">
 
 
+<script>
+function getWeek (month, days) {
+    var btnClass = ' btn btn-outline-';
+    switch(month) {
+        case '02': btnClass += 'primary'; break;
+        case '03': btnClass += 'info'; break;
+        case '04': btnClass += 'success'; break;
+    }
+    var html = ['<tr>'];
+    for (var i=0; i<days.length; i++) {
+        var day = days[i];
+        if (day) {
+            var dayAndMonth = day + '-' + month;
+            var td = '<td><a href="#" \
+                class="day' + dayAndMonth + btnClass + (i >= 5 ? ' weekend' : '') + '" \
+                onclick="select(\'' + dayAndMonth + '\');return false">' + parseInt(day,10) + '</a></td>';
+            html.push(td);
+        } else {
+            html.push('<td></td>');
+        }
+    }
+    html.push('</tr>');
+    return html.join('\n');
+}
+</script>
 
 
 <div class="col-12 pb80">
@@ -148,9 +173,8 @@
 
 
 
-
-Август
-<table class="table table-calendar">
+Февраль
+            <table class="table table-calendar">
     <thead>
         <th>пн</th>
         <th>вт</th>
@@ -161,51 +185,59 @@
         <th>вс</th>
     </thead>
     <tr>
-        <td></td>
-        <td></td>
-        <td><div class="day01-08 btn btn-outline-success" onclick="select('01-08');return false"><span>1</span></div></td>
-        <td><div class="day02-08 btn btn-outline-success" onclick="select('02-08');return false"><span>2</span></div></td>
-        <td><div class="day03-08 btn btn-outline-success" onclick="select('03-08');return false"><span>3</span></div></td>
-        <td><div class="day04-08 btn btn-outline-success weekend" onclick="select('04-08');return false"><span>4</span></div></td>
-        <td><div class="day05-08 btn btn-outline-success weekend" onclick="select('05-08');return false"><span>5</span></div></td>
+
     </tr>
-    <tr>
-        <td><div class="day06-08 btn btn-outline-success" onclick="select('06-08');return false"><span>6</span></div></td>
-        <td><div class="day07-08 btn btn-outline-success" onclick="select('07-08');return false"><span>7</span></div></td>
-        <td><div class="day08-08 btn btn-outline-success" onclick="select('08-08');return false"><span>8</span></div></td>
-        <td><div class="day09-08 btn btn-outline-success" onclick="select('09-08');return false"><span>9</span></div></td>
-        <td><div class="day10-08 btn btn-outline-success" onclick="select('10-08');return false"><span>10</span></div></td>
-        <td><div class="day11-08 btn btn-outline-success weekend" onclick="select('11-08');return false"><span>11</span></div></td>
-        <td><div class="day12-08 btn btn-outline-success weekend" onclick="select('12-08');return false"><span>12</span></div></td>
-    </tr>
-    <tr>
-        <td><div class="day13-08 btn btn-outline-success" onclick="select('13-08');return false"><span>13</span></div></td>
-        <td><div class="day14-08 btn btn-outline-success" onclick="select('14-08');return false"><span>14</span></div></td>
-        <td><div class="day15-08 btn btn-outline-success" onclick="select('15-08');return false"><span>15</span></div></td>
-        <td><div class="day16-08 btn btn-outline-success" onclick="select('16-08');return false"><span>16</span></div></td>
-        <td><div class="day17-08 btn btn-outline-success" onclick="select('17-08');return false"><span>17</span></div></td>
-        <td><div class="day18-08 btn btn-outline-success weekend" onclick="select('18-08');return false"><span>18</span></div></td>
-        <td><div class="day19-08 btn btn-outline-success weekend" onclick="select('19-08');return false"><span>19</span></div></td>
-    </tr>
-    <tr>
-        <td><div class="day20-08 btn btn-outline-success" onclick="select('20-08');return false"><span>20</span></div></td>
-        <td><div class="day21-08 btn btn-outline-success" onclick="select('21-08');return false"><span>21</span></div></td>
-        <td><div class="day22-08 btn btn-outline-success" onclick="select('22-08');return false"><span>22</span></div></td>
-        <td><div class="day23-08 btn btn-outline-success" onclick="select('23-08');return false"><span>23</span></div></td>
-        <td><div class="day24-08 btn btn-outline-success" onclick="select('24-08');return false"><span>24</span></div></td>
-        <td><div class="day25-08 btn btn-outline-success weekend" onclick="select('25-08');return false"><span>25</span></div></td>
-        <td><div class="day26-08 btn btn-outline-success weekend" onclick="select('26-08');return false"><span>26</span></div></td>
-    </tr>
-    <tr>
-        <td><div class="day27-08 btn btn-outline-success" onclick="select('27-08');return false"><span>27</span></div></td>
-        <td><div class="day28-08 btn btn-outline-success" onclick="select('28-08');return false"><span>28</span></div></td>
-        <td><div class="day29-08 btn btn-outline-success" onclick="select('29-08');return false"><span>29</span></div></td>
-        <td><div class="day30-08 btn btn-outline-success" onclick="select('30-08');return false"><span>30</span></div></td>
-        <td><div class="day31-08 btn btn-outline-success" onclick="select('31-08');return false"><span>31</span></div></td>
-        <td></td>
-        <td></td>
-    </tr>
+    
+    <script>
+        document.write(getWeek('02', [null, null, null, null,'01','02','03']));
+        document.write(getWeek('02', ['04','05','06','07','08','09','10']));
+        document.write(getWeek('02', ['11','12','13','14','15','16','17']));
+        document.write(getWeek('02', ['18','19','20','21','22','23','24']));
+        document.write(getWeek('02', ['25','26','27','28',null,null,null]));
+    </script>
 </table>
+
+Март
+<table class="table table-calendar">
+    <thead>
+        <th>пн</th>
+        <th>вт</th>
+        <th>ср</th>
+        <th>чт</th>
+        <th>пт</th>
+        <th>сб</th>
+        <th>вс</th>
+    </thead>
+    <script>
+        document.write(getWeek('03', [null, null, null, null, '01', '02', '03']));
+        document.write(getWeek('03', ['04', '05', '06', '07', '08', '09', '10']));
+        document.write(getWeek('03', ['11', '12', '13', '14', '15', '16', '17']));
+        document.write(getWeek('03', ['18', '19', '20', '21', '22', '23', '24']));
+        document.write(getWeek('03', ['25', '26', '27', '28', '29', '30', '31']));
+    </script>
+</table>
+
+
+Апрель
+<table class="table table-calendar">
+    <thead>
+        <th>пн</th>
+        <th>вт</th>
+        <th>ср</th>
+        <th>чт</th>
+        <th>пт</th>
+        <th>сб</th>
+        <th>вс</th>
+    </thead>
+    <script>
+        document.write(getWeek('04', ['01','02','03','04','05','06','07']));
+        document.write(getWeek('04', ['08','09','10','11','12','13','14']));
+        document.write(getWeek('04', ['15','16','17','18','19','20','21']));
+        document.write(getWeek('04', ['22','23','24','25','26','27','28']));
+        document.write(getWeek('04', ['29','30',null,null,null,null,null]));
+    </script>
+</table>
+
 
 <br>
 
