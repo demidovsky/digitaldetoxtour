@@ -13,6 +13,8 @@
         <link rel="stylesheet" type="text/css" href="cubeportfolio/css/cubeportfolio.min.css">     
         <link href="css/style-leftNavbar.css" rel="stylesheet">
 
+        <script src="../js/getweek.js" type="text/javascript"></script>
+
 <!-- COMMON TAGS -->
 <meta charset="utf-8">
 <title>Даты похода</title>
@@ -142,32 +144,6 @@
                         <div class="container-fluid">
                             <div class="row">
 
-
-<script>
-function getWeek (month, days) {
-    var btnClass = ' btn btn-outline-';
-    switch(month) {
-        case '02': btnClass += 'primary'; break;
-        case '03': btnClass += 'info'; break;
-        case '04': btnClass += 'success'; break;
-    }
-    var html = ['<tr>'];
-    for (var i=0; i<days.length; i++) {
-        var day = days[i];
-        if (day) {
-            var dayAndMonth = day + '-' + month;
-            var td = '<td><a href="#" \
-                class="day' + dayAndMonth + btnClass + (i >= 5 ? ' weekend' : '') + '" \
-                onclick="select(\'' + dayAndMonth + '\');return false">' + parseInt(day,10) + '</a></td>';
-            html.push(td);
-        } else {
-            html.push('<td></td>');
-        }
-    }
-    html.push('</tr>');
-    return html.join('\n');
-}
-</script>
 
 
 <div class="col-12 pb80">

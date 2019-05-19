@@ -191,7 +191,7 @@ function select(day) {
   if (dates[day]) {
     delete dates[day];
     dayText = parseInt(day.substr(0,2), 10);
-    $('.day' + day).removeClass('active').html(dayText)
+    $('.day' + day).removeClass('active').html(dayText).blur();
   } else {
     dates[day] = true;    
     $('.day' + day).addClass('active').html('<i class="fa fa-check mr0"></i>')
@@ -235,7 +235,7 @@ function sendDates() {
             dataType:'json',
             contentType: 'application/json; charset=utf-8',
             success: function () {
-                alert('Принято, спасибо. Если понадобится, можно изменить выбор и отправить заново.')
+                alert('Принято! Если понадобится, можно изменить выбор и отправить заново.')
             },
             error: function (response) {
                 alert('Что-то не так, попробуйте ещё. ' + response.message)
@@ -308,7 +308,7 @@ function join() {
 (function ($, window, document, undefined) {
     'use strict';
 
-    if (!$('#join_button').length) return;
+    if (!$('#confirm').length) return;
 
     var route201 = localStorage.getItem('route201');
     var route202 = localStorage.getItem('route202');

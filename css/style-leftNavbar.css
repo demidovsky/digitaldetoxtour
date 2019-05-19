@@ -1242,6 +1242,7 @@ Portfolio
 Pricing tables
 */
 .pricing-card {
+  position: relative;
   border-radius: 6px;
   -webkit-border-radius: 6px;
   transition: all .3s;
@@ -1535,4 +1536,15 @@ Footer style
 #team_calendar table img {
   display: block;
   margin: 2px auto;
+}
+
+.badge-done {
+  position: absolute;
+  margin-top: -20px;
+  width: 100%;
+  text-align: center;
+}
+
+.badge-done img {
+  width: 50%;
 }
