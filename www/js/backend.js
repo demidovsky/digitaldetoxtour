@@ -2,7 +2,14 @@ var BASE_URL = 'https://api.backendless.com/24BDAC9E-D7B1-FDBC-FF79-5107215EE200
 var FB_KEY = '6c8bd7c790c575e2d7697d8edfcb65ff';
 var APP_ID = '24BDAC9E-D7B1-FDBC-FF79-5107215EE200';
 var API_KEY = '1F9D712F-6D7E-C91B-FFAC-30BB24F76000';
-Backendless.initApp( APP_ID, API_KEY )
+Backendless.initApp( APP_ID, API_KEY );
+
+
+
+VK.init({ 
+  apiId: 6994809 
+}); 
+
 
 
 $(function() {
@@ -18,7 +25,7 @@ $(function() {
       version    : 'v3.0'
     });
     FB.AppEvents.logPageView();
-    checkLoginOnLoad();
+    checkFBLoginOnLoad();
   };
 
   (function(d, s, id){
@@ -30,6 +37,11 @@ $(function() {
    }(document, 'script', 'facebook-jssdk'));
 
 
+  $('#vk_switch').click(function(e) {
+    e.preventDefault();
+    $('#vk_auth').toggle(0);
+  });
+  checkVKLoginOnLoad();
 });
 
 
@@ -41,8 +53,9 @@ $(function() {
 
 var userId = null;
 var userName = null;
+var userPic = null;
 
-function checkLoginOnLoad() {
+function checkFBLoginOnLoad() {
   FB.getLoginStatus(function(response) {
     if (response.status === 'connected') {
       // the user is logged in and has authenticated your
@@ -66,7 +79,7 @@ function checkLoginOnLoad() {
 
           userId = uid;
           userName = found[0].name;
-          showLogin(uid, found[0].name);
+          showFBLogin(uid, found[0].name);
         })
        .catch( function( fault ) {
           // an error has occurred, the error code can be retrieved with fault.statusCode
@@ -84,10 +97,42 @@ function checkLoginOnLoad() {
 
 
 
+function checkVKLoginOnLoad() {
+  VK.Auth.getLoginStatus(function(response) {
+      console.log(response);
+      if (response.status === 'connected') {
+          VK.Api.call('users.get', {
+              fields: 'nickname, screen_name,photo,photo_medium, photo_big', v: '5.95'
+          }, function(data){
+              console.log(data);
+              var vkuser = data.response[0];
+              userId = vkuser.id;
+              userName = vkuser.first_name + ' ' + vkuser.last_name;
+              userPic = vkuser.photo;
+              showVKLogin(userPic, userName);
+          });
+      } else {
+           VK.Widgets.Auth('vk_auth', {}); 
+      }
+  });
+}
 
-function showLogin(uid, name) {
+
+
+
+function showFBLogin(uid, name) {
+  if ($('#signin').find('img').length) return;
   $('#signin').html(
     '<img style="border-radius: 50%" src="http://graph.facebook.com/' + uid + '/picture?type=large&width=42&height=42">' +
+    '<span style="padding-left:5px;">' + name + '</span>'
+  );
+}
+
+
+function showVKLogin(url, name) {
+  if ($('#signin').find('img').length) return;
+  $('#signin').html(
+    '<img style="border-radius: 50%" src="' + url + '">' +
     '<span style="padding-left:5px;">' + name + '</span>'
   );
 }
@@ -170,7 +215,7 @@ function login(callback) {
         userId = user.id;
         userName = user.name;
 
-        showLogin(user.id, user.name);
+        showFBLogin(user.id, user.name);
 
         callback();
        });
@@ -231,7 +276,7 @@ function sendDates() {
           $.ajax({
             type: 'PUT',
             url: BASE_URL + '/data/dates_table',
-            data: JSON.stringify({ objectId: objectId, userId: userId, userName: userName, dates: JSON.stringify(dates) }),
+            data: JSON.stringify({ objectId: objectId, userId: userId, userName: userName, userPic: userPic, dates: JSON.stringify(dates) }),
             dataType:'json',
             contentType: 'application/json; charset=utf-8',
             success: function () {
@@ -350,7 +395,7 @@ function showResults () {
 
   $.ajax({
     type: 'GET',
-    url: BASE_URL + '/data/dates_table',
+    url: BASE_URL + '/data/dates_table?where=disabled%3Dfalse',
     // data: { userId: userId, vote: dates },
     dataType:'json',
     contentType: 'application/json; charset=utf-8',
@@ -358,7 +403,8 @@ function showResults () {
       console.log('VOTES', votes);
 
       for (var i=0; i<votes.length; i++) {
-        var person = '<img title="' + votes[i].userName + '" alt="' + votes[i].userName + '" style="border-radius: 50%" src="http://graph.facebook.com/' + votes[i].userId + '/picture?type=large&width=32&height=32">'
+        var url = votes[i].userPic || 'http://graph.facebook.com/' + votes[i].userId + '/picture?type=large&width=32&height=32';
+        var person = '<img class="result-pic" title="' + votes[i].userName + '" alt="' + votes[i].userName + '" src="' + url + '">'
         var dates = JSON.parse(votes[i].dates);
         for (var day in dates) {
           console.log(day);

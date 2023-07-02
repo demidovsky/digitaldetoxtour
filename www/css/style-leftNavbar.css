@@ -1118,10 +1118,13 @@ Left header style
       display: inline-block; } }
 
 @media (max-width: 991px) {
+  .navbar {
+    min-height: 45px;
+  }
   .navbar-expand-lg .navbar-toggler {
     position: absolute;
     right: 15px;
-    top: 9px;
+    top: 3px;
     border: 0px; }
   h2.display-4 {
     font-size: 3rem;
@@ -1547,4 +1550,20 @@ Footer style
 
 .badge-done img {
   width: 50%;
+}
+
+#vk_auth {
+  display: none;
+  margin: 20px auto;
+}
+
+#vk_switch {
+  cursor: pointer;
+  border-bottom: 1px dashed;
+}
+
+.result-pic {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
 }
